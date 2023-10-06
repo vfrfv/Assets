@@ -28,6 +28,8 @@ public class Siren : MonoBehaviour
     private IEnumerator SmoothlyChangeVolume()
     {
         float minValue = 0f;
+        float volumeChangeRate = 1f;
+        var waitForOneSecond = new WaitForSeconds(volumeChangeRate);
 
         _audioSource.Play();
         _audioSource.volume = 0.1f;
@@ -35,7 +37,7 @@ public class Siren : MonoBehaviour
         while (_audioSource.volume > minValue)
         {
             _audioSource.volume += _value;
-            yield return new WaitForSeconds(1f);
+            yield return waitForOneSecond;
         }
 
         _increaseCoroutine = null;
